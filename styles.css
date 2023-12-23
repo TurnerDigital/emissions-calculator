@@ -1,0 +1,475 @@
+:root {
+    --drive-blue: #003057;
+    --fresh-blue: #0069A7;
+    --clean-green: #2C9941;
+    --put-it-in-neutral: #F3E8DA;
+    --white: #FFFFFF;
+    --lightest-gray: #F8F8F8;
+    --dark-gray: #D9D9D9;
+    --black-50: #727272;
+    --black-75: #393939;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--black-75);
+}
+
+body {
+    background-color: var(--drive-blue);
+}
+
+.calc-wrapper {
+    min-width: 342px;
+    max-width: 545px;
+    margin: 40px auto 0;
+    border-radius: 0px 0px 0px 40px;
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    background-color: var(--lightest-gray);
+}
+
+.calc-top {
+    margin: 32px 32px 24px;
+    padding-top: 32px;
+}
+
+
+/* Title Styles */
+#calc-title h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    color: var(--drive-blue);
+}
+
+#calc-title p {
+    max-width: 415px;
+    margin: 10px auto 0;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 0 8px;
+}
+
+
+/* Input Group 1 Styles */
+.input-group-1-wrapper {
+    margin: 10px 0 14px;
+    width: 100%;
+}
+
+label {
+    font-size: 12px;
+}
+
+/* Vehicle Type and Count Input Styles */
+.vehicle-row {
+    display: flex;
+}
+
+#vehicle-type,
+#vehicle-count-input {
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid var(--drive-blue);
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#vehicle-type-container {
+    position: relative;
+    min-width: 186px;
+    width: 349px;
+}
+
+#vehicle-type-container::after {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='16' viewBox='0 0 20 16' fill='none'%3E%3Cpath d='M18.6667 5.33334L10 12.8L1.33334 5.33334' stroke='%23003057' stroke-linecap='square'/%3E%3C/svg%3E");
+    position: absolute;
+    right: 10px;
+    top: 16px;
+    padding: 0;
+    font-size: 25px;
+    line-height: 20px;
+    background-color: var(--white);
+    color: var(--drive-blue);
+    pointer-events: none;
+}
+
+#vehicle-type {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 48px;
+    padding-left: 5px;
+    text-align: left;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+    background-color: var(--white);
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.invalid-input {
+    color: red !important;
+    border-color: red !important;
+    animation: shake 0.5s ease-in-out;
+}
+
+#vehicle-type option:disabled {
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+}
+
+#vehicle-type:focus {
+    outline: none;
+}
+
+/* Vehicle Count Styles */
+#vehicle-count-input {
+    -moz-appearance: textfield;
+    width: 85px;
+    height: 48px;
+    margin-left: 16px;
+    border-radius: 0px;
+    background-color: var(--white);
+}
+
+#vehicle-count-input::-webkit-inner-spin-button,
+#vehicle-count-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#vehicle-count-input:focus {
+    outline: none;
+}
+
+#vehicle-count-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.vehicle-count-btns {
+    width: 31px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--dark-gray);
+}
+
+.input-group-2-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fuel Button Styles */
+.fuel-wrapper {
+    margin: 0 0 14px;
+}
+
+.fuel-inputs {
+    display: flex;
+    align-items: center;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]+label {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    user-select: none;
+    touch-action: manipulation;
+    cursor: pointer;
+    border-bottom: 2px solid var(--drive-blue);
+    color: var(--fresh-blue);
+    background-color: var(--lightest-gray);
+    transition: background-color 0.1s ease, font-weight 0.1s ease, color 0.1s ease;
+}
+
+input[type="radio"]:checked+label {
+    font-weight: bold;
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    border-bottom: 2px solid var(--clean-green);
+    color: var(--clean-green);
+    background-color: white;
+}
+
+
+
+/* Slider Input Styles */
+.slider-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0 30px;
+}
+
+.slider-group label {
+    width: 150px;
+    text-align: left;
+    margin-right: 10px;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.range {
+    width: 100%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+
+}
+
+.range::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 5px;
+    background: var(--drive-blue);
+}
+
+.range::-moz-range-track {
+    height: 6px;
+    border-radius: 5px;
+    background: var(--drive-blue);
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 24px;
+    margin-top: -9px;
+    cursor: pointer;
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    background-color: var(--clean-green);
+}
+
+.range::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 24px;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    background-color: var(--clean-green);
+}
+
+.slider-value {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    font-weight: 700;
+    line-height: 40px;
+    color: var(--fresh-blue);
+}
+
+
+/* Calc Output Styles */
+#output-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 4px solid var(--drive-blue);
+    border-radius: 0px 0px 0px 40px;
+    box-shadow: 0px 14px 23px 0px rgba(0, 0, 0, 0.08);
+    background-color: var(--clean-green);
+}
+
+#output-results {
+    position: relative;
+    width: 40%;
+    margin: 32px 0 40px 32px;
+}
+
+#output-results>h4 {
+    margin: 0 0 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--drive-blue);
+}
+
+#co2e-lbs {
+    margin: 0 0 2px;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--white);
+}
+
+#co2e-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
+
+#co2e-wrapper p {
+    margin: 0 4px 0 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--white);
+}
+
+#output-trees {
+    width: 60%;
+    margin: 32px 32px 40px 0;
+    color: var(--white);
+}
+
+#output-trees>p {
+    margin: 0;
+    color: var(--white);
+}
+
+#co2e-lbs-trees {
+    font-weight: 600;
+    color: var(--drive-blue);
+}
+
+/* Output Info Button */
+#info-button {
+    width: 16px;
+    height: 16px;
+    padding: 0px;
+    border: 1px solid var(--fresh-blue);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    color: var(--clean-green);
+    background-color: var(--white);
+}
+
+#info-button:hover {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--fresh-blue);
+    border-radius: 50%;
+    font-size: 10px;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    color: var(--white);
+    background-color: var(--fresh-blue);
+}
+
+#info-block {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: -30px;
+    transform: translateX(45%);
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    background-color: var(--white);
+    color: var(--fresh-blue);
+}
+
+#info-text {
+    padding: 0 10px 10px;
+}
+
+#close-button {
+    display: block;
+    margin-left: auto;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+    color: var(--drive-blue);
+    background-color: var(--white);
+}
+
+#close-button:hover {
+    color: var(--fresh-blue);
+}
+
+@media only screen and (max-width: 500px) {
+    .em-calc-wrapper {
+        margin: 24px 16px 24px;
+    }
+
+    #vehicle-type-container::after {
+        width: 16px;
+    }
+
+    #vehicle-count-input {
+        width: 60px;
+        margin-left: 8px;
+    }
+
+    .vehicle-count-btns {
+        width: 28px;
+        height: 24px;
+    }
+
+    .slider-group {
+        margin: 20px 0 40px;
+    }
+
+    #output-results {
+        width: 43%;
+        margin: 32px 0 40px 16px;
+    }
+
+    #output-trees {
+        width: 60%;
+        margin: 32px 30px 16px 56px;
+    }
+
+    #info-block {
+        top: -20px;
+        transform: translateX(55%);
+        width: 200px;
+    }
+}
