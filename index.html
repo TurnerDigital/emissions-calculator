@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Emissions Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="calc-wrapper" id="em-calc-analytics">
+        <div class="calc-top">
+            <div id="calc-title">
+                <h3>Emissions Calculator</h3>
+                <p>Tell us about your vehicle fleet to see your emissions output below.</p>
+            </div>
+            <div class="calc-inputs">
+                <div class="input-group-1-wrapper">
+                    <label for="vehicle-type">Vehicle Type & Count:</label>
+                    <div class="vehicle-row">
+                        <div id="vehicle-type-container">
+                            <select name="vehicle-type" id="vehicle-type">
+                                <option value="" id="vehicle-placeholder" disabled selected>Choose A Vehicle Type*
+                                </option>
+                                <option value="car">Car</option>
+                                <option value="suv">SUV</option>
+                                <option value="van">Van</option>
+                                <option value="pickup">Pickup Truck</option>
+                                <option value="truck">Truck 10k+ GVW</option>
+                            </select>
+                        </div>
+                        <div id="vehicle-count">
+                            <input type="number" id="vehicle-count-input" name="vehicle-count-input" min="1" max="999"
+                                pattern="[0-9]*" placeholder="1-999" onkeyup="if(this.value > 999) this.value = 999;">
+                        </div>
+                        <div id="vehicle-count-btn-wrapper">
+                            <div class="vehicle-count-btns" id="vehicle-count-up-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="11" viewBox="0 0 15 11"
+                                    fill="none">
+                                    <path d="M0.999998 7.33333L7.5 2.19999L14 7.33333" stroke="#003057"
+                                        stroke-linecap="square" />
+                                </svg>
+                            </div>
+                            <div class="vehicle-count-btns" id="vehicle-count-down-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="11" viewBox="0 0 15 11"
+                                    fill="none">
+                                    <path d="M14 3.66667L7.5 8.80001L1 3.66667" stroke="#003057"
+                                        stroke-linecap="square" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group-2-wrapper">
+                    <div class="fuel-wrapper">
+                        <label for="fuel">Type of Fuel:</label>
+                        <div class="fuel-inputs">
+                            <input type="radio" id="gas-radio" name="fuel" value="gas" onclick="selectFuel('gas')"
+                                checked>
+                            <label for="gas-radio">Gas</label>
+                            <input type="radio" id="diesel-radio" name="fuel" value="diesel"
+                                onclick="selectFuel('diesel')">
+                            <label for="diesel-radio">Diesel</label>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label for="annual-miles">Annual Miles:</label>
+                        <div class="slider-container">
+                            <input type="range" class="range" id="annual-miles" name="annual-miles" min="5000"
+                                max="50000" step="500" value="27500">
+                            <div class="slider-value" id="annual-miles-value"></div>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label for="years-of-service">Years of Service:</label>
+                        <div class="slider-container">
+                            <input type="range" class="range" id="years-of-service" name="years-of-service" min="1"
+                                max="7" value="4">
+                            <div class="slider-value" id="years-of-service-value"></div>
+                        </div>
+                    </div>
+                    <div class="slider-group">
+                        <label for="mpg">MPG:</label>
+                        <div class="slider-container">
+                            <input type="range" class="range" id="mpg" name="mpg" min="1" max="70" value="36">
+                            <div class="slider-value" id="mpg-value"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="output-wrapper">
+            <div id="output-results">
+                <h4>Your Results:</h4>
+                <p id="co2e-lbs"></p>
+                <div id="co2e-wrapper">
+                    <p>lbs of CO2e</p>
+                    <button id="info-button" onclick="toggleInfo('info-block')">i</button>
+                </div>
+                <div id="info-block">
+                    <button id="close-button" onclick="toggleInfo('info-block')">x</button>
+                    <div id="info-text">A unit of measurement used to quantify the amount of carbon dioxide gas produced
+                        or emitted. </div>
+                </div>
+            </div>
+            <div id="output-trees">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="31" viewBox="0 0 26 31" fill="none">
+                    <line x1="1.33249e-07" y1="29.5" x2="26" y2="29.5" stroke="#003057" stroke-width="3" />
+                    <path
+                        d="M17.3333 10.8254L9.75 0L2.16667 10.8254H4.18167L0 17.3206H7.58333V21.6508H11.9167V17.3206H19.5L15.3183 10.8254H17.3333ZM21.8183 10.8254H23.8333L16.25 0L13.6608 3.69146L19.4133 11.9079H17.3008L20.7892 17.3206H26L21.8183 10.8254ZM14.0833 18.4032H18.4167V21.6508H14.0833V18.4032Z"
+                        fill="#F3E8DA" />
+                </svg>
+                <p>Reducing your emissions this amount, by going electric, would be like planting <span
+                        id="co2e-lbs-trees">- -</span> trees.</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
